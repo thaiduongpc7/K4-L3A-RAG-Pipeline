@@ -15,6 +15,7 @@ from pathlib import Path
 
 
 DATA_DIR = Path(__file__).parent.parent / "data" / "landing" / "legal"
+LEGAL_EXTENSIONS = {".pdf", ".doc", ".docx"}
 
 
 def setup_directory() -> None:
@@ -24,20 +25,17 @@ def setup_directory() -> None:
 
 
 def download_documents() -> None:
-    """Tải ít nhất 3 PDF/DOCX từ nguồn công khai."""
-    # TODO: Có thể tải thủ công hoặc dùng requests.
-    #
-    # Ví dụ:
-    # import requests
-    #
-    # sources = {
-    #     "policy-a.pdf": "https://example.edu/policy-a.pdf",
-    # }
-    # for filename, url in sources.items():
-    #     response = requests.get(url, timeout=30)
-    #     response.raise_for_status()
-    #     (DATA_DIR / filename).write_bytes(response.content)
-    raise NotImplementedError("Implement download_documents")
+    """Validate collected originals without replacing them on reruns."""
+    documents = sorted(
+        path for path in DATA_DIR.iterdir()
+        if path.is_file() and not path.name.startswith(".")
+        and path.suffix.lower() in LEGAL_EXTENSIONS and path.stat().st_size > 1024
+    )
+    if len(documents) < 3:
+        raise RuntimeError("Need at least 3 PDF/DOC/DOCX files in data/landing/legal/")
+    for path in documents:
+        print(f"Ready: {path.name} ({path.stat().st_size} bytes)")
+    print(f"Validated {len(documents)} legal source documents")
 
 
 if __name__ == "__main__":

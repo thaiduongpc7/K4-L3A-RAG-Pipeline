@@ -15,31 +15,89 @@ Cài browser trước khi chạy:
 
 import asyncio
 import json
+import re
+from datetime import datetime, timezone
+from html.parser import HTMLParser
 from pathlib import Path
+
+import requests
 
 
 DATA_DIR = Path(__file__).parent.parent / "data" / "landing" / "news"
 
 ARTICLE_URLS = [
-    # TODO: Thêm ít nhất 5 public URL.
+    "https://www.momo.vn/blog/top-khach-san-ninh-binh-c101dt266",
+    "https://www.bestprice.vn/blog/diem-den-8/ninh-binh-255/kinh-nghiem-di-chuyen-khi-di-du-lich-ninh-binh-day-du-nhat_2-4939.html",
+    "https://mia.vn/cam-nang-du-lich/top-5-nhung-dia-diem-hot-mua-sam-tai-ninh-binh-3421",
+    "https://vnexpress.net/cam-nang-du-lich-ninh-binh-4127327.html",
+    "https://www.momo.vn/blog/top-mon-ngon-ninh-binh-c101dt267",
+    "https://www.momo.vn/blog/kinh-nghiem-du-lich-ninh-binh-c101dt237",
 ]
 
 
+class ArticleParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.title_parts: list[str] = []
+        self.blocks: list[tuple[str, str]] = []
+        self.current_tag: str | None = None
+        self.current_text: list[str] = []
+        self.skip_depth = 0
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag in {"script", "style", "noscript", "svg", "nav", "footer", "header"}:
+            self.skip_depth += 1
+        elif not self.skip_depth and tag in {"title", "h1", "h2", "h3", "p", "li"}:
+            self.current_tag = tag
+            self.current_text = []
+
+    def handle_data(self, data: str) -> None:
+        if not self.skip_depth and self.current_tag:
+            self.current_text.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag in {"script", "style", "noscript", "svg", "nav", "footer", "header"}:
+            self.skip_depth = max(0, self.skip_depth - 1)
+        elif tag == self.current_tag:
+            text = re.sub(r"\s+", " ", "".join(self.current_text)).strip()
+            if text:
+                (self.title_parts if tag == "title" else self.blocks).append(
+                    text if tag == "title" else (tag, text)
+                )
+            self.current_tag = None
+            self.current_text = []
+
+
+def _to_markdown(html: str) -> tuple[str, str]:
+    parser = ArticleParser()
+    parser.feed(html)
+    title = parser.title_parts[0] if parser.title_parts else "Ninh Bình"
+    seen: set[str] = set()
+    lines = []
+    for tag, text in parser.blocks:
+        if len(text) < 25 or text in seen:
+            continue
+        seen.add(text)
+        lines.append(f"- {text}" if tag == "li" else text)
+    return title, "\n\n".join(lines)
+
+
 async def crawl_article(url: str) -> dict:
-    # TODO: Implement crawling logic.
-    #
-    # from datetime import datetime
-    # from crawl4ai import AsyncWebCrawler
-    #
-    # async with AsyncWebCrawler() as crawler:
-    #     result = await crawler.arun(url=url)
-    #     return {
-    #         "url": url,
-    #         "title": result.metadata.get("title", "Unknown"),
-    #         "date_crawled": datetime.now().isoformat(),
-    #         "content_markdown": result.markdown,
-    #     }
-    raise NotImplementedError("Implement crawl_article")
+    response = await asyncio.to_thread(
+        requests.get, url,
+        headers={"User-Agent": "Mozilla/5.0 (compatible; RAG coursework crawler)"},
+        timeout=30,
+    )
+    response.raise_for_status()
+    title, markdown = _to_markdown(response.text)
+    if len(markdown) < 200:
+        raise ValueError("Page did not contain enough readable article content")
+    return {
+        "url": url,
+        "title": title,
+        "date_crawled": datetime.now(timezone.utc).isoformat(),
+        "content_markdown": markdown,
+    }
 
 
 async def crawl_all() -> None:

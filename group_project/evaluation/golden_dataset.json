@@ -1,0 +1,98 @@
+[
+  {
+    "id": "ninhbinh-season-01",
+    "question": "Nên đi du lịch Ninh Bình vào thời gian nào nếu thích lễ hội?",
+    "expected_answer": "Khoảng tháng 1-2 âm lịch phù hợp với người thích không khí nhộn nhịp và các lễ hội.",
+    "expected_context": "data/standardized/news/article_02.md: thời gian thích hợp để đến Ninh Bình nếu ưa lễ hội là khoảng tháng 1-2 âm lịch."
+  },
+  {
+    "id": "ninhbinh-season-02",
+    "question": "Thời điểm nào ở Ninh Bình phù hợp để nghỉ dưỡng nhẹ nhàng?",
+    "expected_answer": "Tháng 4-5 thường phù hợp cho chuyến nghỉ dưỡng nhẹ nhàng vì thời tiết khá dễ chịu, khô ráo và có nắng nhẹ.",
+    "expected_context": "data/standardized/news/article_02.md: tháng 4-5 có thời tiết khá dễ chịu, khô ráo và nắng đẹp nhẹ nhàng."
+  },
+  {
+    "id": "ninhbinh-distance-01",
+    "question": "Ninh Bình cách Hà Nội khoảng bao xa?",
+    "expected_answer": "Ninh Bình cách Hà Nội khoảng 95 km.",
+    "expected_context": "data/standardized/news/article_02.md: Ninh Bình cách Hà Nội khoảng 95km."
+  },
+  {
+    "id": "ninhbinh-bus-01",
+    "question": "Đi xe khách từ Hà Nội đến Ninh Bình mất bao lâu và giá khoảng bao nhiêu?",
+    "expected_answer": "Xe khách thường mất khoảng 1 giờ 30 phút đến 2 giờ, với giá khoảng 80.000-100.000 đồng một vé.",
+    "expected_context": "data/standardized/news/article_02.md: xe khách từ các bến Mỹ Đình, Giáp Bát hoặc Yên Nghĩa; giá 80.000-100.000 đồng và thời gian 1 giờ 30 phút đến 2 giờ."
+  },
+  {
+    "id": "ninhbinh-train-01",
+    "question": "Đi tàu hỏa đến Ninh Bình có giá và thời gian như thế nào?",
+    "expected_answer": "Vé tàu hỏa khoảng 90.000-250.000 đồng tùy loại ghế và tàu, thời gian đi khoảng 2 giờ.",
+    "expected_context": "data/standardized/news/article_02.md: các ga Ninh Bình, Cầu Yên, Đồng Giao và Ghềnh; giá 90.000-250.000 đồng và thời gian khoảng 2 giờ."
+  },
+  {
+    "id": "ninhbinh-local-transport-01",
+    "question": "Ở Ninh Bình nên thuê phương tiện gì để di chuyển?",
+    "expected_answer": "Có thể dùng taxi, xe máy hoặc xe đạp; xe máy và xe đạp thường dễ thuê tại nhà nghỉ, homestay với giá khoảng 70.000-130.000 đồng.",
+    "expected_context": "data/standardized/news/article_02.md: các phương tiện cơ bản gồm taxi, xe máy và xe đạp; giá thuê xe khoảng 70.000-130.000 đồng."
+  },
+  {
+    "id": "trangan-ticket-01",
+    "question": "Vé tham quan Tràng An hiện được mô tả trong tài liệu là bao nhiêu?",
+    "expected_answer": "Vé Tràng An là 250.000 đồng một người và đã bao gồm đò.",
+    "expected_context": "data/standardized/news/article_06.md và article_09.md: vé Tràng An 250.000 VND/người, đã bao gồm đò."
+  },
+  {
+    "id": "trangan-route-01",
+    "question": "Tuyến 2 ở Tràng An có những đặc điểm gì?",
+    "expected_answer": "Tuyến 2 đi qua 4 hang và 3 đền, mất khoảng 2,5 giờ; tài liệu gợi ý đây là lựa chọn cân bằng, không quá mệt.",
+    "expected_context": "data/standardized/news/article_06.md: tuyến 2 có 4 hang, 3 đền, thời gian 2,5 giờ và được đề xuất vì khá cân bằng."
+  },
+  {
+    "id": "hangmua-time-01",
+    "question": "Leo Hang Múa mất bao lâu và nên dành bao nhiêu thời gian chụp ảnh trên đỉnh?",
+    "expected_answer": "Thời gian leo khoảng 20-30 phút, sau đó có thể dành khoảng 30-45 phút trên đỉnh để chụp ảnh.",
+    "expected_context": "data/standardized/news/article_06.md và article_09.md: leo Hang Múa 20-30 phút; thời gian trên đỉnh chụp ảnh 30-45 phút."
+  },
+  {
+    "id": "ninhbinh-budget-01",
+    "question": "Một chuyến du lịch Ninh Bình 2 ngày 1 đêm tốn khoảng bao nhiêu tiền mỗi người?",
+    "expected_answer": "Chi phí thực tế được tài liệu ước tính khoảng 1,5-3 triệu đồng mỗi người; mức tiết kiệm khoảng 1,5-2 triệu và mức thoải mái khoảng 2,5-3,5 triệu.",
+    "expected_context": "data/standardized/news/article_06.md và article_09.md: ngân sách 1.500.000-3.500.000 VND/người tùy mức chi tiêu."
+  },
+  {
+    "id": "ninhbinh-hotel-01",
+    "question": "Tam Coc Lavender Homestay có khoảng giá phòng bao nhiêu?",
+    "expected_answer": "Tam Coc Lavender Homestay có giá phòng khoảng 400.000-900.000 đồng một đêm.",
+    "expected_context": "data/standardized/news/article_01.md: Tam Coc Lavender Homestay tại Tam Cốc, Ninh Hải, Hoa Lư; giá phòng 400.000-900.000 VND/đêm."
+  },
+  {
+    "id": "ninhbinh-hotel-02",
+    "question": "Little Tam Coc có giá phòng và tiện ích nào đáng chú ý?",
+    "expected_answer": "Little Tam Coc có giá khoảng 800.000-1.500.000 đồng một đêm, có ban công hướng vườn, tour văn hóa địa phương và cho thuê xe đạp miễn phí.",
+    "expected_context": "data/standardized/news/article_01.md: Little Tam Coc ở Đam Khuê Ngoài, Ninh Hải, Hoa Lư; giá 800.000-1.500.000 VND/đêm, có ban công, tour văn hóa và xe đạp miễn phí."
+  },
+  {
+    "id": "ninhbinh-food-01",
+    "question": "Ninh Bình có những món đặc sản nào nên thử?",
+    "expected_answer": "Các món nổi bật gồm bún mọc Kim Sơn, xôi trứng kiến, bún chả quạt, cá kho gáo, thịt dê núi, cơm cháy, gỏi cá nhệch và ốc núi.",
+    "expected_context": "data/standardized/news/article_05.md và article_07.md: danh sách món ngon Ninh Bình gồm bún mọc, xôi trứng kiến, bún chả quạt, cá kho gáo, dê núi, cơm cháy, gỏi cá nhệch và ốc núi."
+  },
+  {
+    "id": "ninhbinh-food-02",
+    "question": "Cơm cháy Ninh Bình được làm và ăn kèm như thế nào?",
+    "expected_answer": "Cơm cháy được làm từ gạo nếp, nấu trong nồi gang trên bếp than để tạo độ giòn; thường ăn kèm ruốc và nước sốt từ thịt dê.",
+    "expected_context": "data/standardized/news/article_05.md và article_07.md: cơm cháy dùng gạo nếp, nấu bằng nồi gang trên bếp than, ăn với ruốc và nước sốt thịt dê."
+  },
+  {
+    "id": "ninhbinh-shopping-01",
+    "question": "Chợ Rồng Ninh Bình nằm ở đâu và có quy mô thế nào?",
+    "expected_answer": "Chợ Rồng nằm tại 71 Vân Giang, bên sông Vân, cách bến xe Ninh Bình khoảng 800 m; chợ có diện tích mặt bằng khoảng 16.000 m2.",
+    "expected_context": "data/standardized/news/article_03.md: Chợ Rồng ở 71 Vân Giang, tiếp giáp Dương Vân Nga, Vân Giang và Lê Đại Hành; cách bến xe khoảng 800m và có mặt bằng 16.000m2."
+  },
+  {
+    "id": "ninhbinh-statistics-01",
+    "question": "Theo báo cáo sơ kết, Ninh Bình đón bao nhiêu khách quốc tế và khách nội địa trong 6 tháng đầu năm 2025?",
+    "expected_answer": "Ninh Bình đón hơn 1.186.700 lượt khách quốc tế và khoảng 12,6 triệu lượt khách nội địa trong 6 tháng đầu năm 2025.",
+    "expected_context": "data/standardized/legal/BC so kết thực hiện Chiến luợc PT DL VN dến 2030 (1).md: hơn 1.186.700 lượt khách quốc tế và khoảng 12,6 triệu lượt khách nội địa trong 6 tháng đầu năm 2025."
+  }
+]
