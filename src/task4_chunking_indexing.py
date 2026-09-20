@@ -33,13 +33,6 @@ load_dotenv()
 _embedding_model = None
 
 
-def _env_flag(name: str, default: bool = False) -> bool:
-    value = os.getenv(name)
-    if value is None:
-        return default
-    return value.strip().lower() in {"1", "true", "yes", "on"}
-
-
 def embed_texts(texts: list[str]) -> list[list[float]]:
     if not texts:
         return []
@@ -50,8 +43,7 @@ def embed_texts(texts: list[str]) -> list[list[float]]:
     if _embedding_model is None:
         from sentence_transformers import SentenceTransformer
         _embedding_model = SentenceTransformer(
-            os.getenv("EMBEDDING_MODEL", EMBEDDING_MODEL),
-            local_files_only=_env_flag("HF_LOCAL_FILES_ONLY"),
+            os.getenv("EMBEDDING_MODEL", EMBEDDING_MODEL)
         )
     return _embedding_model.encode(
         texts, normalize_embeddings=True, show_progress_bar=False

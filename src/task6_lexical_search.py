@@ -22,14 +22,22 @@ def build_bm25_index(corpus: list[dict]):
     return BM25Okapi([_tokenize(item["content"]) for item in corpus])
 
 
+_BM25_INDEX = None
+
+
 def lexical_search(query: str, top_k: int = 10) -> list[dict]:
     """Trả về BM25 SearchResult theo score giảm dần."""
+    global _BM25_INDEX
     if top_k <= 0 or not query.strip():
         return []
     corpus = CORPUS or chunk_documents(load_documents())
     if not corpus:
         return []
-    scores = build_bm25_index(corpus).get_scores(_tokenize(query))
+    
+    if _BM25_INDEX is None:
+        _BM25_INDEX = build_bm25_index(corpus)
+        
+    scores = _BM25_INDEX.get_scores(_tokenize(query))
     indices = sorted(range(len(corpus)), key=lambda index: scores[index], reverse=True)[:top_k]
     return [
         {
